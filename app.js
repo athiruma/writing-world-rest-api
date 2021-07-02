@@ -33,7 +33,7 @@ app.post( "/signup", SignUp);
 const { GetAllPosts } = require("./controllers/posts/GetAllPosts");
 const { PostData } = require("./controllers/posts/PostData");
 const { MyPosts } = require("./controllers/posts/MyPosts");
-app.get("/posts", GetAllPosts );
+app.get("/posts", Auth, GetAllPosts );
 app.get("/post/:postId", Auth, PostData);
 app.get("/myposts", Auth , MyPosts);
 
