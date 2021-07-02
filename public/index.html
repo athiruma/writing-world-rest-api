@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>WRITING_WORLD</title>
+    </head>
+    <style>
+        table{
+            width: 50%;
+        }
+        table,th,td{
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+        td{
+            padding:10px 5px;
+        }
+    </style>
+    <body>
+        <center><h1 style="color:red">REST API</center>
+        <caption>Methods</caption>
+        <table>
+            <thead>
+                <tr>
+                    <th>POST</th>
+                    <th>GET</th>
+                    <th>DELTE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                         /login
+                        <ul>
+                            <li>email</li>
+                            <li>password</li>
+                        </ul>
+                    </td>
+                    <td>
+                         /posts
+                        <td>
+                                 /deletepost/:postId
+
+
+                        </td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                         /signup
+                        <ul>
+                            <li>username</li>
+                            <li>email</li>
+                            <li>password</li>
+                            <li>type <ul>
+                                <li>1 - writer</li>
+                                <li>0 - reader</li>
+                            </ul> </li>
+                            <li>date of Birth</li>
+                        </ul>
+                    </td>
+                    <td> /post/:postId</td>
+                    <td> /post/:postId/comment/:commentId </td>
+                </tr>
+                <tr>
+                    <td> /createpost
+                    <ul>
+                        <li>title</li>
+                        <li>body</li>
+                        <li>imageUrl</li>
+                    </ul></td>
+                    <td> /myposts</td>
+                    <td> /like/:postId</td>
+                </tr>
+                <tr>
+                    <td>
+                         /like/:postId
+                    </td>
+                    <td>
+                         /profile
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                         /post/:postId/comment
+                        <ul>
+                            <li>comment</li>
+                        </ul>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                         /UpdateProfile
+                        <ul>
+                            <li>photo</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
