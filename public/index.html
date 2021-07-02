@@ -24,7 +24,9 @@
                 <tr>
                     <th>POST</th>
                     <th>GET</th>
+
                     <th>DELTE</th>
+                    <th>PUT</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,13 +38,12 @@
                             <li>password</li>
                         </ul>
                     </td>
-                    <td>
-                         /posts
-                        <td>
-                                 /deletepost/:postId
-
-
-                        </td>
+                    <td>/posts</td>
+                    <td>/deletepost/:postId</td>
+                    <td>/UpdateProfile
+                        <ul>
+                            <li>photo</li>
+                        </ul>
                     </td>
                 </tr>
                 <tr>
@@ -61,6 +62,12 @@
                     </td>
                     <td> /post/:postId</td>
                     <td> /post/:postId/comment/:commentId </td>
+
+                    <td> /post/:postId/comment
+                        <ul>
+                            <li>comment</li>
+                        </ul>
+                    </td>
                 </tr>
                 <tr>
                     <td> /createpost
@@ -81,21 +88,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                         /post/:postId/comment
-                        <ul>
-                            <li>comment</li>
-                        </ul>
-                    </td>
+
 
                 </tr>
                 <tr>
-                    <td>
-                         /UpdateProfile
-                        <ul>
-                            <li>photo</li>
-                        </ul>
-                    </td>
+
                 </tr>
             </tbody>
         </table>

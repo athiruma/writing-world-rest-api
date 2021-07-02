@@ -1,6 +1,6 @@
 const {db} = require("../../utils/admin");
 
-exports.Comment = (req,res)=>{
+exports.AddComment = (req, res)=>{
     const newComment = {
         comment : req.body.comment,
         createdAt: new Date().toLocaleString(),
@@ -8,6 +8,7 @@ exports.Comment = (req,res)=>{
         username:req.user.username,
         imageUrl : req.user.imageUrl
     };
+    console.log(newComment);
     const postDocument = db.doc(`/posts/${newComment.postId}`);
     let postData;
 
@@ -21,26 +22,9 @@ exports.Comment = (req,res)=>{
     .then( doc => {
         postData = doc.data();
         postData.comments++;
-        console.log("1");
         postDocument.update({comments:postData.comments});
-        console.log("1");
         return db.collection("comments").add(newComment);
     })
     .then( () => res.json({newComment}))
     .catch(err => res.status(500).json({error:err.message}));
 };
-
-
-
-exports.MyComments = ( req, res ) =>{
-    const username = req.user.username;
-    db.collection("comments").where("username",'==',username).get()
-    .then(snap => {
-        let comments = [];
-        snap.forEach(doc => {
-            comments.push(doc.data());
-        });
-        return res.json({comments});
-    })
-    .catch(err => res.json({error:err.message}));
-}

@@ -50,16 +50,19 @@ app.post('/like/:postId' , Auth, Like );
 app.delete("/like/:postId", Auth, UnLike );
 
 
-const { Comment } = require("./controllers/comments/Comment");
+const { AddComment } = require("./controllers/comments/Comment");
 const { DeleteComment } = require("./controllers/comments/DeleteComment");
-app.post("/post/:postId/comment", Auth, Comment );
+
+app.put( "/post/:postId/comment",Auth , AddComment );
 app.delete("/post/:postId/comment/:commentId", Auth, DeleteComment );
 
 
 const { MyProfile } = require("./controllers/profile/MyProfile");
 const { UpdateProfile } = require("./controllers/profile/UpdateProfile");
+
+
 app.get("/profile", Auth , MyProfile);
-app.post("/UpdateProfile", Auth , UpdateProfile );
+app.put("/UpdateProfile", Auth , UpdateProfile );
 
 
 

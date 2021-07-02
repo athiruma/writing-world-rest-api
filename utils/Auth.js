@@ -10,10 +10,12 @@ exports.Auth = ( req, res, next ) => {
     admin.auth().verifyIdToken(idToken)
     .then( decodedToken => {
         req.user = decodedToken;
+        
         return db.collection('users')
-        .where('userId','==',req.user.uid).get();
+        .where('user_id','==',req.user.uid).get();
     })
     .then( snap =>{
+
         req.user.username = snap.docs[0].data().username;
         req.user.type = snap.docs[0].data().type;
         req.user.imageUrl = snap.docs[0].data().imageUrl;
@@ -21,5 +23,5 @@ exports.Auth = ( req, res, next ) => {
         req.user.dob = snap.docs[0].data().dob;
         return next();
     })
-    .catch( (err) => {res.json({error:err.code})});
+    .catch( (err) => {res.json({error:err.message})});
 }
