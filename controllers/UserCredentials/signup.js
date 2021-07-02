@@ -10,7 +10,6 @@ exports.SignUp = async ( req, res ) => {
         dob : req.body.dob,
         imageUrl : "",
     };
-    console.log(newUser);
     try {
         let snap = await db.doc(`/users/${newUser.username}`).get();
         if( snap.exists ) {

@@ -7,7 +7,7 @@ exports.MyPosts = ( req, res ) =>{
         let posts=[];
         snap.forEach(doc=>{
             let post = doc.data();
-            post.id = doc.id;
+            post.postId = doc.id;
             posts.push(post);
         })
         return res.json({posts});

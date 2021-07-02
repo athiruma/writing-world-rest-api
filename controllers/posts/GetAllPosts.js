@@ -5,7 +5,7 @@ exports.GetAllPosts = async ( req, res ) =>{
         const snapshot = await db.collection("posts").get();
         await snapshot.forEach(documnet =>{
             const data = documnet.data();
-            data.id = documnet.id;
+            data.postId = documnet.postId;
             posts.push(data);
         });
         res.json({posts});

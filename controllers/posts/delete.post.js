@@ -9,19 +9,19 @@ exports.deletePost = async (req,res)=>{
         let document ;
         snap.forEach(doc =>{
             if( doc.id === postId ){
-                document =doc
+                document =doc;
             }
         });
         if( document ){
             title = document.data().title;
-            let image = document.data().imageUrl.split(".");
+            let image = document.data().postImage.split(".");
             extension = image[image.length-1].split("?")[0];
             await document.ref.delete();
         }
         else return res.status(404).json({Error:"Post Not Found with id "+postId});
         snap = await db.collection("likes").where("postId",'==',postId).get();
-        if(snap.exists)
-            snap.docs[0].forEach(doc=>{
+        if(snap.docs[0].exists)
+            snap.forEach(doc=>{
                 doc.ref.delete();
         })
         snap = await db.collection("comments").where("postId",'==',postId).get();
