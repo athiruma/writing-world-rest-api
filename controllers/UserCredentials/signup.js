@@ -1,6 +1,7 @@
 const { firebase } = require("../../utils/firebase");
 const {  db } = require("../../utils/admin");
 exports.SignUp = async ( req, res ) => {
+    console.log("hello");
     const password = req.body.password;
     const newUser = {
         email : req.body.email,
@@ -9,6 +10,7 @@ exports.SignUp = async ( req, res ) => {
         dob : req.body.dob,
         imageUrl : "",
     };
+    console.log(newUser);
     try {
         let snap = await db.doc(`/users/${newUser.username}`).get();
         if( snap.exists ) {
@@ -16,7 +18,6 @@ exports.SignUp = async ( req, res ) => {
         }
         const document = await firebase.auth().createUserWithEmailAndPassword(newUser.email,password);
         await document.user.sendEmailVerification();
-
         newUser.user_id = document.user.uid;
         newUser.createdAt = new Date().toISOString();
         await db.doc(`/users/${newUser.username}`).set(newUser);

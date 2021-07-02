@@ -26,9 +26,10 @@ app.get("/", ( req, res ) => {
 
 const { Login } = require("./controllers/UserCredentials/login");
 const { SignUp } = require("./controllers/UserCredentials/signup");
+const { ForgotPassword } = require("./controllers/UserCredentials/ForgotPassword");
 app.post( "/login", Login);
 app.post( "/signup", SignUp);
-
+app.post("/forgotpassword", ForgotPassword);
 
 const { GetAllPosts } = require("./controllers/posts/GetAllPosts");
 const { PostData } = require("./controllers/posts/PostData");
