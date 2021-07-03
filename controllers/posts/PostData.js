@@ -27,7 +27,6 @@ exports.PostData = async ( req, res ) => {
             commentsData.push(commentData);
         });
         postData.comments = commentsData;
-        console.log(postData);
         return res.json({data:postData});
     } catch (e) {
             return res.json({error:e.code});

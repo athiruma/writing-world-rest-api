@@ -13,7 +13,7 @@ exports.createPost = async ( req, res ) => {
             authorImage : req.user.imageUrl
     }
     const mimetype = req.files["image"].mimetype;
-    if(  mimetype === "image/png" || mimetype === "image/jpg" || mimetype === "image/jpeg"){
+    if(  mimetype === "image/png" || mimetype === "image/jpg" || mimetype === "image/jpeg" ){
         const imageName =  req.files["image"].name;
         const data = req.files["image"].data;
         const imageExtension = imageName.split('.')[imageName.split('.').length - 1];

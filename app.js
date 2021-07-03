@@ -27,9 +27,13 @@ app.get("/", ( req, res ) => {
 const { Login } = require("./controllers/UserCredentials/login");
 const { SignUp } = require("./controllers/UserCredentials/signup");
 const { ForgotPassword } = require("./controllers/UserCredentials/ForgotPassword");
+const { SendVerification } = require("./controllers/UserCredentials/SendVerificationMail");
 app.post( "/login", Login);
 app.post( "/signup", SignUp);
 app.post("/forgotpassword", ForgotPassword);
+app.post("/sendverification", Auth, SendVerification);
+
+
 
 const { GetAllPosts } = require("./controllers/posts/GetAllPosts");
 const { PostData } = require("./controllers/posts/PostData");

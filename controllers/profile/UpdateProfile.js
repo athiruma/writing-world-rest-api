@@ -28,20 +28,22 @@ exports.UpdateProfile = async (req,res) => {
         });
         imageUrl = `https://firebasestorage.googleapis.com/v0/b/writingworld-9ba1f.appspot.com/o/profileImages%2F${imageFileName}?alt=media`;
 
-        await db.doc(`/users/${req.user.username}`).update({imageUrl:imageUrl})
+        db.doc(`/users/${req.user.username}`).update({imageUrl:imageUrl});
 
         if(req.user.type == 1){
             snap = await db.collection("posts").where("username",'==',req.user.username).get();
             if(snap.docs[0].exists)
                 snap.forEach(doc=>{
-                    doc.ref.update({imageUrl});
+                    doc.ref.update({authorImage:imageUrl});
                 })
         }
         snap = await db.collection("comments").where("username",'==',req.user.username).get();
-        if(snap.docs[0].exists)
+        console.log("Ss");
+        if(snap)
             snap.forEach(doc=>{
                 doc.ref.update({imageUrl});
             })
+            console.log(1);
         return res.json({Success:"Image Uploaded Succesfully"})
     } catch (e) {
         res.status(500).json({error:e.message})

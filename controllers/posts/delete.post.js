@@ -20,12 +20,12 @@ exports.deletePost = async (req,res)=>{
         }
         else return res.status(404).json({Error:"Post Not Found with id "+postId});
         snap = await db.collection("likes").where("postId",'==',postId).get();
-        if(snap.docs[0].exists)
+        if(snap)
             snap.forEach(doc=>{
                 doc.ref.delete();
         })
         snap = await db.collection("comments").where("postId",'==',postId).get();
-        if(snap.docs[0].exists)
+        if(snap)
             snap.forEach(doc=>{
                 doc.ref.delete();
             })

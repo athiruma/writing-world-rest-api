@@ -8,7 +8,6 @@ exports.AddComment = (req, res)=>{
         username:req.user.username,
         imageUrl : req.user.imageUrl
     };
-    console.log(newComment);
     const postDocument = db.doc(`/posts/${newComment.postId}`);
     let postData;
 
@@ -21,10 +20,12 @@ exports.AddComment = (req, res)=>{
     })
     .then( doc => {
         postData = doc.data();
-        postData.comments++;
-        postDocument.update({comments:postData.comments});
         return db.collection("comments").add(newComment);
     })
-    .then( () => res.json({newComment}))
+    .then( () =>{
+        postData.comments++;
+        postDocument.update({comments:postData.comments});
+        return res.json({newComment})
+     })
     .catch(err => res.status(500).json({error:err.message}));
 };
