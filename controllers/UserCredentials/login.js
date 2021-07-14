@@ -11,7 +11,7 @@ exports.Login =  ( req, res ) => {
    .then(function(firebaseUser) {
        userDoc = firebaseUser;
        user = firebaseUser;
-       
+
        return firebaseUser.user.getIdToken();
    })
    .then( token =>{
