@@ -5,8 +5,8 @@ exports.MyProfile = async ( req , res ) => {
     try {
         let data;
         let snap = await db.collection("users").where("user_id", "==", userId).get();
-        data = snap.data[0].data();
-        data.id = snap.data[0].id;
+        data = snap.docs[0].data();
+        data.id = snap.docs[0].id;
         snap = await db.collection("posts").where("username",'==',data.username).get()
         data.posts=snap.size;
         return res.json({data});
