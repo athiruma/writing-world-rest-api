@@ -66,7 +66,7 @@ const { MyProfile } = require("./controllers/profile/MyProfile");
 const { UpdateProfile } = require("./controllers/profile/UpdateProfile");
 
 
-app.get("/profile/:username", Auth , MyProfile);
+app.get("/profile/:userId", Auth , MyProfile);
 app.put("/UpdateProfile", Auth , UpdateProfile );
 
 
