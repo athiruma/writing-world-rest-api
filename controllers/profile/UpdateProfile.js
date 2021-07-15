@@ -6,6 +6,7 @@ const path = require('path');
 const fs = require('fs');
 
 exports.UpdateProfile = async (req,res) => {
+    console.log(req.body);
     const imageName = req.files["photo"].name;
     const mimetype = req.files["photo"].mimetype;
     const data = req.files["photo"].data;
@@ -38,12 +39,10 @@ exports.UpdateProfile = async (req,res) => {
                 })
         }
         snap = await db.collection("comments").where("username",'==',req.user.username).get();
-        console.log("Ss");
         if(snap)
             snap.forEach(doc=>{
                 doc.ref.update({imageUrl});
             })
-            console.log(1);
         return res.json({Success:"Image Uploaded Succesfully"})
     } catch (e) {
         res.status(500).json({error:e.message})

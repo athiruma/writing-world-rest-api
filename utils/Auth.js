@@ -21,6 +21,7 @@ exports.Auth = ( req, res, next ) => {
         req.user.imageUrl = snap.docs[0].data().imageUrl;
         req.user.email = snap.docs[0].data().email;
         req.user.dob = snap.docs[0].data().dob;
+        req.user.userId = snap.docs[0].data().user_id;
         return next();
     })
     .catch( (err) => {res.json({error:err.message})});

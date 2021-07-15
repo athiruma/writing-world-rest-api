@@ -3,7 +3,7 @@ const {db} = require("../../utils/admin");
 exports.AddComment = (req, res)=>{
     const newComment = {
         comment : req.body.comment,
-        createdAt: new Date().toLocaleString(),
+        createdAt: new Date().toISOString(),
         postId : req.params.postId,
         username:req.user.username,
         imageUrl : req.user.imageUrl
@@ -20,11 +20,14 @@ exports.AddComment = (req, res)=>{
     })
     .then( doc => {
         postData = doc.data();
+
         return db.collection("comments").add(newComment);
     })
-    .then( () =>{
+    .then( (docRef) =>{
         postData.comments++;
+        newComment.commentId = docRef.id;
         postDocument.update({comments:postData.comments});
+        
         return res.json({newComment})
      })
     .catch(err => res.status(500).json({error:err.message}));

@@ -9,6 +9,7 @@ exports.createPost = async ( req, res ) => {
             title: req.body.title,
             body : req.body.body,
             comments:0,
+            userId: req.user.userId,
             likes:0,
             authorImage : req.user.imageUrl
     }
@@ -43,3 +44,4 @@ exports.createPost = async ( req, res ) => {
         return res.status(406).json({Error:"Upload only png/jpg/jpeg"});
     }
 }
+

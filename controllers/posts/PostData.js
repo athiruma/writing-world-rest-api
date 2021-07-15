@@ -3,7 +3,7 @@ exports.PostData = async ( req, res ) => {
     const postId = req.params.postId;
     const post = db.doc(`/posts/${postId}`);
     const likes = db.collection("likes").where("postId","==",postId);
-    const comments = db.collection("comments").where("postId","==",postId);
+    const comments = db.collection("comments").where("postId","==",postId).orderBy("createdAt","desc");
     try {
         const postData = {};
         let snap = await post.get();
@@ -29,6 +29,6 @@ exports.PostData = async ( req, res ) => {
         postData.comments = commentsData;
         return res.json({data:postData});
     } catch (e) {
-            return res.json({error:e.code});
+            return res.json({error:e.message});
     }
 }
