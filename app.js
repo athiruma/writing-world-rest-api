@@ -63,13 +63,13 @@ app.delete("/post/:postId/comment/:commentId", Auth, DeleteComment );
 
 
 const { MyProfile, Profile } = require("./controllers/profile/MyProfile");
-const { UpdateProfile } = require("./controllers/profile/UpdateProfile");
+const { UpdateProfile, UpdateUser } = require("./controllers/profile/UpdateProfile");
 
 
 app.get("/profile/:username", Auth , MyProfile);
 app.get("/profile", Auth, Profile);
 app.put("/UpdateProfile", Auth , UpdateProfile );
-
+app.put("/updateUser", Auth, UpdateUser);
 
 
 app.listen( process.env.PORT , ()=> console.log("http://localhost:"+process.env.PORT));

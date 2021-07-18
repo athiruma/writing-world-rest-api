@@ -48,3 +48,22 @@ exports.UpdateProfile = async (req,res) => {
     }
 
 }
+exports.UpdateUser = async (req, res) => {
+    const username = req.user.username;
+    try{
+        let snap = await db.doc(`/users/${username}`).get();
+        
+        if( snap.data().type === 0 ){
+            snap.ref.update({type:1});
+            return res.json({success:'User Updated'});
+        }
+        else{
+            return res.json({error:'Already a Writer'})
+        }
+        
+    }
+    catch(e){
+        return res.json({error:e.message});
+    }
+    
+}

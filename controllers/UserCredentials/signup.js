@@ -5,12 +5,12 @@ exports.SignUp = async ( req, res ) => {
     const newUser = {
         email : req.body.email,
 		username : req.body.username,
-        type : req.body.type,
+        type : parseInt(req.body.type),
         dob : req.body.dob,
         imageUrl : "",
     };
     try {
-        let snap = await db.doc(`/users/${newUser.username}`).get();
+        let snap = await db.doc(`/users/${newUser.username}`).get();par
         if( snap.exists ) {
             return res.json({error : "Username Already Taken "});
         }
