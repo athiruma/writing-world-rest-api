@@ -4,7 +4,6 @@ exports.DeleteComment = async ( req, res )=>{
     const commentId = req.params.commentId;
     const postId = req.params.postId;
     const username = req.user.username;
-    console.log(username);
     const postDoc = db.doc(`/posts/${postId}`);
     const comment = db.doc(`/comments/${commentId}`);
     let data;

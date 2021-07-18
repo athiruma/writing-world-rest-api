@@ -44,4 +44,3 @@ exports.createPost = async ( req, res ) => {
         return res.status(406).json({Error:"Upload only png/jpg/jpeg"});
     }
 }
-

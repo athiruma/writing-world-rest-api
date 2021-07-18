@@ -26,6 +26,12 @@ exports.Login =  ( req, res ) => {
    })
   .catch(function(error) {
        // Error Handling
+       if(error.code === "auth/user-not-found"){
+           return res.json({error: "Email was incorrect"});
+       }
+       if(error.code === "auth/wrong-password"){
+           return res.json({error:"Incorrect Password"});
+       }
        return res.json({error:error.code});
   });
 }

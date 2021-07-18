@@ -6,7 +6,6 @@ const path = require('path');
 const fs = require('fs');
 
 exports.UpdateProfile = async (req,res) => {
-    console.log(req.body);
     const imageName = req.files["photo"].name;
     const mimetype = req.files["photo"].mimetype;
     const data = req.files["photo"].data;

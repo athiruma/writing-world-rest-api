@@ -40,7 +40,7 @@ const { PostData } = require("./controllers/posts/PostData");
 const { MyPosts } = require("./controllers/posts/MyPosts");
 app.get("/posts", Auth, GetAllPosts );
 app.get("/post/:postId", Auth, PostData);
-app.get("/myposts", Auth , MyPosts);
+app.get("/myposts/:username", Auth , MyPosts);
 
 
 const {createPost}  = require("./controllers/posts/create.post");
@@ -62,11 +62,12 @@ app.put( "/post/:postId/comment",Auth , AddComment );
 app.delete("/post/:postId/comment/:commentId", Auth, DeleteComment );
 
 
-const { MyProfile } = require("./controllers/profile/MyProfile");
+const { MyProfile, Profile } = require("./controllers/profile/MyProfile");
 const { UpdateProfile } = require("./controllers/profile/UpdateProfile");
 
 
-app.get("/profile/:userId", Auth , MyProfile);
+app.get("/profile/:username", Auth , MyProfile);
+app.get("/profile", Auth, Profile);
 app.put("/UpdateProfile", Auth , UpdateProfile );
 
 

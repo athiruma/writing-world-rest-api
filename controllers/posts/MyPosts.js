@@ -1,7 +1,7 @@
 const {db} = require("../../utils/admin");
 
 exports.MyPosts = ( req, res ) =>{
-    const username = req.user.username ;
+    const username = req.params.username ;
     db.collection("posts").where("username",'==',username).get()
     .then(snap=>{
         let posts=[];

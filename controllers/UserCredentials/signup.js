@@ -1,7 +1,6 @@
 const { firebase } = require("../../utils/firebase");
 const {  db } = require("../../utils/admin");
 exports.SignUp = async ( req, res ) => {
-    console.log("hello");
     const password = req.body.password;
     const newUser = {
         email : req.body.email,
